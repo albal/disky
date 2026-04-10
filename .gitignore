@@ -1,0 +1,60 @@
+# Go
+backend/vendor/
+backend/*.exe
+backend/*.exe~
+backend/*.dll
+backend/*.so
+backend/*.dylib
+backend/tmp/
+*.test
+*.out
+backend/coverage.txt
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/coverage/
+frontend/.env.local
+*.tsbuildinfo
+
+# Environment
+.env
+.env.*
+!.env.example
+*.local
+
+# Docker
+.docker/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# OS
+Thumbs.db
+
+# Caddy
+caddy/data/
+caddy/config/
+
+# Database
+*.dump
+*.sql.gz
+
+# Secrets
+*.pem
+*.key
+*.cert
+*.crt
+!caddy/*.crt
+!caddy/*.key
+secrets/

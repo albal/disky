@@ -1,0 +1,41 @@
+disky.tsew.com {
+	# API proxied to Go backend
+	handle /api/* {
+		reverse_proxy backend:8080
+	}
+
+	# OAuth callback routes also go to backend
+	handle /auth/* {
+		reverse_proxy backend:8080
+	}
+
+	# Everything else served from the built frontend
+	handle {
+		reverse_proxy frontend:80
+	}
+
+	# Security headers
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+
+	encode gzip zstd
+
+	log {
+		output file /var/log/caddy/access.log {
+			roll_size 100mb
+			roll_keep 5
+		}
+		format json
+	}
+}
+
+# Redirect www to apex
+www.disky.tsew.com {
+	redir https://disky.tsew.com{uri} permanent
+}
