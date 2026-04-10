@@ -31,7 +31,7 @@ Disky is a price-tracking app for storage and memory products. The repository co
 1. Copy the environment template:
 
    ```bash
-   cp /home/runner/work/disky/disky/.env.example /home/runner/work/disky/disky/.env
+   cp .env.example .env
    ```
 
 2. Update the values in `.env`, especially:
@@ -44,7 +44,6 @@ Disky is a price-tracking app for storage and memory products. The repository co
 3. Start the stack:
 
    ```bash
-   cd /home/runner/work/disky/disky
    docker compose up -d
    ```
 
@@ -55,7 +54,7 @@ The PostgreSQL container loads `/database/migrations/001_initial_schema.sql` on 
 ### Backend
 
 ```bash
-cd /home/runner/work/disky/disky/backend
+cd backend
 go mod download
 go run ./cmd/server
 ```
@@ -65,7 +64,7 @@ The API listens on `SERVER_PORT` and exposes a health check at `/health`.
 ### Frontend
 
 ```bash
-cd /home/runner/work/disky/disky/frontend
+cd frontend
 npm ci
 npm run dev
 ```
@@ -79,8 +78,8 @@ For production builds, the frontend uses `VITE_API_URL` and `VITE_GOOGLE_CLIENT_
 - `GET /api/auth/google`
 - `GET /api/auth/apple`
 - `GET /api/auth/microsoft`
-- `GET /api/alerts/`
-- `POST /api/alerts/`
+- `GET /api/alerts`
+- `POST /api/alerts`
 
 ## Notes
 
